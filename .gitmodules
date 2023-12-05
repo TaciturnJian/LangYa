@@ -1,0 +1,3 @@
+[submodule "SentryLib"]
+	path = SentryLib
+	url = https://github.com/TaciturnJian/LangYa.SentryLib
