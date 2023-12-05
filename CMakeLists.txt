@@ -2,10 +2,12 @@ cmake_minimum_required(VERSION 3.16)
 
 project(TinyRobotSystem
 	VERSION 1.0.0
-	DESCRIPTION "A C++ System for Robot Programing"
+	DESCRIPTION "A C++ Program for Robots"
 	HOMEPAGE_URL ""
 	LANGUAGES CXX
 )
+
+add_subdirectory(SentryLib)
 
 # Cross Platform Support
 if(CMAKE_SYSTEM_NAME MATCHES "Linux") 
@@ -21,11 +23,12 @@ else()
     message(WARNING "The reliablity of this project on platforms except Windows|Linux are not guranteed")
 endif()
 
-aux_source_directory(Sources SentryLibSources)
-add_library(${PROJECT_NAME} ${SentryLibSources})
+aux_source_directory(Sources TinyRobotSystemSources)
+add_library(${PROJECT_NAME} ${TinyRobotSystemSources})
 target_include_directories(${PROJECT_NAME} BEFORE PUBLIC Headers)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 target_link_libraries(${PROJECT_NAME}
+	SentryLib
 )
 
 aux_source_directory(Testers TesterSources)
