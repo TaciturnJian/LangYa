@@ -15,7 +15,7 @@ if(CMAKE_SYSTEM_NAME MATCHES "Linux")
 	add_definitions(-DSC_LINUX)
 
 	add_compile_options(-fconcepts)
-	message("You may need add new line in your cmake: 'add_compile_options(-fconcepts)' ")
+	message("${PROJECT_NAME}> Added -fconecpts in compile options")
 elseif(CMAKE_SYSTEM_NAME MATCHES "Windows") 
     set(SC_PUBLIC_PTHREAD)
 	add_definitions(-DSC_WINDOWS)
@@ -24,7 +24,7 @@ else()
 endif()
 
 aux_source_directory(Sources TinyRobotSystemSources)
-add_library(${PROJECT_NAME} ${TinyRobotSystemSources})
+add_executable(${PROJECT_NAME} ${TinyRobotSystemSources})
 target_include_directories(${PROJECT_NAME} BEFORE PUBLIC Headers)
 set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 target_link_libraries(${PROJECT_NAME}
@@ -33,7 +33,7 @@ target_link_libraries(${PROJECT_NAME}
 
 aux_source_directory(Testers TesterSources)
 foreach(TesterSource ${TesterSources})
-	get_filename_component(TesterName ${TesterSource} NAME)
+	get_filename_component(TesterName ${TesterSource} NAME_WLE)
 	message("Found Tester: ${TesterName} -> ${TesterSource}")
 
 	add_executable(${TesterName} ${TesterSource})

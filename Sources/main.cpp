@@ -1,13 +1,14 @@
 #include <Application.hpp>
 
-int main(const int argumentCount, const char * const * const argumentList)
+#include <boost/program_options.hpp>
+
+#include <LangYa/SentryLib/ApplicationInfo.hpp>
+
+struct _GlobalTable
 {
-	auto& app = LangYa::Application::GetInstance();
+	int Param;
+} GlobalTable;
 
-	app.Initialize();
-	app.EventLoop();
-	app.Save();
-	app.Finalize();
-
-	return 0;
+int main(const int argumentCount, const char* const * const argumentList)
+{
 }
